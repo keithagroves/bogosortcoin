@@ -1,10 +1,10 @@
 [package]
-name = "bogocoin-consensus"
+name = "bogosortcoin-consensus"
 version.workspace = true
 edition.workspace = true
 
 [dependencies]
-bogocoin-primitives = { path = "../primitives" }
+bogosortcoin-primitives = { path = "../primitives" }
 sha3 = { workspace = true }
 num-bigint = { workspace = true }
 num-traits = { workspace = true }

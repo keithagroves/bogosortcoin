@@ -1,4 +1,4 @@
-use bogocoin_primitives::{CanonicalDecode, CanonicalEncode, DecodeError, Hash256};
+use bogosortcoin_primitives::{CanonicalDecode, CanonicalEncode, DecodeError, Hash256};
 
 /// Block header fields per specifications/consensus.md 5.1.
 ///

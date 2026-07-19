@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Launch the BogoCoin miner and a local web server to visualize it live.
+"""Launch the BogosortCoin miner and a local web server to visualize it live.
 
 Builds crates/miner in release mode if needed, runs it with --stream-file
 pointed at web/state.json, and serves web/ over HTTP so the browser page can
@@ -18,13 +18,13 @@ import webbrowser
 WEB_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.dirname(WEB_DIR)
 STATE_FILE = os.path.join(WEB_DIR, "state.json")
-BINARY = os.path.join(ROOT_DIR, "target", "release", "bogocoin-miner")
+BINARY = os.path.join(ROOT_DIR, "target", "release", "bogosortcoin-miner")
 
 
 def build_miner():
-    print("building bogocoin-miner (release)...")
+    print("building bogosortcoin-miner (release)...")
     subprocess.run(
-        ["cargo", "build", "--release", "-p", "bogocoin-miner"],
+        ["cargo", "build", "--release", "-p", "bogosortcoin-miner"],
         cwd=ROOT_DIR,
         check=True,
     )

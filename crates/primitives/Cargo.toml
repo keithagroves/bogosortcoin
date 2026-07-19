@@ -1,5 +1,5 @@
 [package]
-name = "bogocoin-primitives"
+name = "bogosortcoin-primitives"
 version.workspace = true
 edition.workspace = true
 

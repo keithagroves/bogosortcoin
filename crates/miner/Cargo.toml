@@ -1,15 +1,15 @@
 [package]
-name = "bogocoin-miner"
+name = "bogosortcoin-miner"
 version.workspace = true
 edition.workspace = true
 
 [[bin]]
-name = "bogocoin-miner"
+name = "bogosortcoin-miner"
 path = "src/main.rs"
 
 [dependencies]
-bogocoin-primitives = { path = "../primitives" }
-bogocoin-consensus = { path = "../consensus" }
+bogosortcoin-primitives = { path = "../primitives" }
+bogosortcoin-consensus = { path = "../consensus" }
 clap = { workspace = true }
 hex = { workspace = true }
 serde = { workspace = true }

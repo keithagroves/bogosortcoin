@@ -1,6 +1,6 @@
 //! Chain work calculation. See specifications/consensus.md 5.7.
 
-use bogocoin_primitives::Hash256;
+use bogosortcoin_primitives::Hash256;
 use num_bigint::BigUint;
 use num_traits::One;
 

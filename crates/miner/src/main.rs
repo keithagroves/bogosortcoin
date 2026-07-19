@@ -2,9 +2,9 @@ use std::io::Write;
 use std::path::PathBuf;
 use std::time::{Duration, Instant, SystemTime, UNIX_EPOCH};
 
-use bogocoin_consensus::bogopow::{generate_proof, is_sorted, ticket_meets_target};
-use bogocoin_consensus::{block_work, BlockHeader};
-use bogocoin_primitives::Hash256;
+use bogosortcoin_consensus::bogopow::{generate_proof, is_sorted, ticket_meets_target};
+use bogosortcoin_consensus::{block_work, BlockHeader};
+use bogosortcoin_primitives::Hash256;
 use clap::Parser;
 use serde::Serialize;
 

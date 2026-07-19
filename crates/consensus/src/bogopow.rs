@@ -2,7 +2,7 @@
 //! See specifications/consensus.md 5.3-5.6.
 
 use crate::header::BlockHeader;
-use bogocoin_primitives::Hash256;
+use bogosortcoin_primitives::Hash256;
 use sha3::digest::XofReader;
 use sha3::{Sha3_256, Shake256};
 

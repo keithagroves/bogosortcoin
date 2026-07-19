@@ -1,6 +1,6 @@
-# BogoCoin
+# BogosortCoin
 
-**[keithagroves.github.io/bogocoin](https://keithagroves.github.io/bogocoin/)** — landing page, deployed from `site/` via GitHub Actions on every push to `main`.
+**[keithagroves.github.io/bogosortcoin](https://keithagroves.github.io/bogosortcoin/)** — landing page, deployed from `site/` via GitHub Actions on every push to `main`.
 
 A proof-of-work scheme where a mining attempt succeeds only when a
 deterministic, hash-derived permutation of `[0, 1, ..., N-1]` comes out
@@ -34,11 +34,11 @@ brute-forcing nonces and re-hashing. See the "is this quantum secure?" /
 ## Project layout
 
 ```text
-bogocoin/
+bogosortcoin/
 ├── crates/
 │   ├── primitives/   fixed-width types, canonical big-endian encode/decode
 │   ├── consensus/     BlockHeader, seed/permutation/ticket derivation, chain-work
-│   └── miner/          CLI miner binary (bogocoin-miner)
+│   └── miner/          CLI miner binary (bogosortcoin-miner)
 ├── web/               browser visualizer for a live mining run
 ├── site/              static landing page, deployed to GitHub Pages
 └── plan.md            full project plan and roadmap (all phases)
@@ -60,7 +60,7 @@ monotonicity, and an end-to-end small-N mining convergence test.
 ## CLI miner
 
 ```sh
-cargo run --release -p bogocoin-miner -- --help
+cargo run --release -p bogosortcoin-miner -- --help
 ```
 
 Key options:
@@ -76,13 +76,13 @@ Key options:
 Example — an easy demo run that finishes in well under a second:
 
 ```sh
-cargo run --release -p bogocoin-miner
+cargo run --release -p bogosortcoin-miner
 ```
 
 A harder one (tighter target, more leading zero bits):
 
 ```sh
-cargo run --release -p bogocoin-miner -- \
+cargo run --release -p bogosortcoin-miner -- \
   --permutation-size 8 \
   --target 3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f
 ```

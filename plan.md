@@ -1,8 +1,8 @@
-# BogoCoin Implementation Plan
+# BogosortCoin Implementation Plan
 
 ## 1. Project Overview
 
-BogoCoin is a proof-of-work cryptocurrency whose mining process uses a deterministic permutation generated from:
+BogosortCoin is a proof-of-work cryptocurrency whose mining process uses a deterministic permutation generated from:
 
 * The previous block hash.
 * The candidate block header.
@@ -73,7 +73,7 @@ The consensus-critical implementation should avoid unnecessary dependencies.
 The repository should use a workspace structure similar to:
 
 ```text
-bogocoin/
+bogosortcoin/
 ├── Cargo.toml
 ├── crates/
 │   ├── primitives/
@@ -1234,7 +1234,7 @@ Mitigation:
 
 ## 17. Definition of Done
 
-BogoCoin is not considered production-ready merely because it can mine blocks and transfer coins.
+BogosortCoin is not considered production-ready merely because it can mine blocks and transfer coins.
 
 The project is complete for a mainnet-readiness review only when:
 

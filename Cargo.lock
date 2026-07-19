@@ -68,21 +68,21 @@ dependencies = [
 ]
 
 [[package]]
-name = "bogocoin-consensus"
+name = "bogosortcoin-consensus"
 version = "0.1.0"
 dependencies = [
- "bogocoin-primitives",
+ "bogosortcoin-primitives",
  "num-bigint",
  "num-traits",
  "sha3",
 ]
 
 [[package]]
-name = "bogocoin-miner"
+name = "bogosortcoin-miner"
 version = "0.1.0"
 dependencies = [
- "bogocoin-consensus",
- "bogocoin-primitives",
+ "bogosortcoin-consensus",
+ "bogosortcoin-primitives",
  "clap",
  "hex",
  "serde",
@@ -90,7 +90,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "bogocoin-primitives"
+name = "bogosortcoin-primitives"
 version = "0.1.0"
 
 [[package]]
