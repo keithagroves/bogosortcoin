@@ -1,0 +1,16 @@
+[package]
+name = "bogocoin-miner"
+version.workspace = true
+edition.workspace = true
+
+[[bin]]
+name = "bogocoin-miner"
+path = "src/main.rs"
+
+[dependencies]
+bogocoin-primitives = { path = "../primitives" }
+bogocoin-consensus = { path = "../consensus" }
+clap = { workspace = true }
+hex = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }

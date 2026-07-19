@@ -1,0 +1,5 @@
+/target
+web/state.json
+web/state.json.tmp
+.DS_Store
+.claude/

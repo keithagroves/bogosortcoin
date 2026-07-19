@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>BogoCoin Miner</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>⛏️ BogoCoin Miner</h1>
+    <div id="status" class="status status-mining">MINING…</div>
+  </header>
+
+  <main>
+    <section class="card permutation-card">
+      <div class="card-header-row">
+        <div>
+          <h2>Permutation <span id="perm-size" class="muted"></span></h2>
+          <p class="muted small">Sorted only when every tile lands on its own index &mdash; probability 1&nbsp;/&nbsp;N!</p>
+        </div>
+        <div class="view-toggle" role="tablist" aria-label="Permutation view">
+          <button id="view-tiles-btn" class="view-toggle-btn active" type="button" role="tab" aria-selected="true">Tiles</button>
+          <button id="view-bars-btn" class="view-toggle-btn" type="button" role="tab" aria-selected="false">Bars</button>
+        </div>
+      </div>
+      <div id="perm-grid" class="perm-grid"></div>
+      <div id="perm-bars" class="perm-bars hidden">
+        <div id="bars-plot" class="bars-plot"></div>
+        <div id="bars-axis" class="bars-axis"></div>
+        <div id="bar-tooltip" class="bar-tooltip hidden"></div>
+      </div>
+    </section>
+
+    <section class="stats-row">
+      <div class="card stat">
+        <div class="stat-label">Attempts</div>
+        <div id="stat-attempts" class="stat-value">0</div>
+      </div>
+      <div class="card stat">
+        <div class="stat-label">Rate</div>
+        <div id="stat-rate" class="stat-value">0<span class="unit">/s</span></div>
+      </div>
+      <div class="card stat">
+        <div class="stat-label">Elapsed</div>
+        <div id="stat-elapsed" class="stat-value">0.0<span class="unit">s</span></div>
+      </div>
+      <div class="card stat">
+        <div class="stat-label">Nonce</div>
+        <div id="stat-nonce" class="stat-value">0</div>
+      </div>
+    </section>
+
+    <section class="card hashes-card">
+      <h2>BogoPoW Data</h2>
+      <div class="hash-row">
+        <div class="hash-label">seed</div>
+        <div id="hash-seed" class="hash-value">&nbsp;</div>
+      </div>
+      <div class="hash-row">
+        <div class="hash-label">ticket</div>
+        <div id="hash-ticket" class="hash-value">&nbsp;</div>
+      </div>
+      <div class="hash-row">
+        <div class="hash-label">target</div>
+        <div id="hash-target" class="hash-value">&nbsp;</div>
+      </div>
+      <div class="conditions">
+        <div id="cond-sorted" class="condition">permutation sorted</div>
+        <div id="cond-target" class="condition">ticket &le; target</div>
+      </div>
+    </section>
+  </main>
+
+  <div id="found-overlay" class="found-overlay hidden">
+    <div class="found-card">
+      <div class="found-title">BLOCK FOUND</div>
+      <div class="found-sub">valid BogoPoW proof discovered</div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
