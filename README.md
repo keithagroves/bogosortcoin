@@ -1,5 +1,7 @@
 # BogoCoin
 
+**[keithagroves.github.io/bogocoin](https://keithagroves.github.io/bogocoin/)** — landing page, deployed from `site/` via GitHub Actions on every push to `main`.
+
 A proof-of-work scheme where a mining attempt succeeds only when a
 deterministic, hash-derived permutation of `[0, 1, ..., N-1]` comes out
 sorted — combined with a standard hash-target check for fine-grained
@@ -38,6 +40,7 @@ bogocoin/
 │   ├── consensus/     BlockHeader, seed/permutation/ticket derivation, chain-work
 │   └── miner/          CLI miner binary (bogocoin-miner)
 ├── web/               browser visualizer for a live mining run
+├── site/              static landing page, deployed to GitHub Pages
 └── plan.md            full project plan and roadmap (all phases)
 ```
 

@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>BogoCoin</title>
+<meta name="description" content="A proof-of-work scheme secured by a hash-derived shuffle: mining succeeds when a permutation of N numbers comes back sorted." />
+<style>
+  :root {
+    color-scheme: dark;
+    --bg: #0b0d12;
+    --panel: #141822;
+    --panel-border: #232a3a;
+    --text: #e6e9f0;
+    --muted: #8891a7;
+    --accent: #6ee7b7;
+    --mono: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: radial-gradient(circle at top, #151a26, var(--bg) 60%);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    line-height: 1.55;
+  }
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 72px 24px 80px;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    margin: 0 0 14px;
+  }
+  h1 {
+    font-size: 2.4rem;
+    line-height: 1.15;
+    margin: 0 0 18px;
+    letter-spacing: -0.01em;
+  }
+  .lede {
+    font-size: 1.1rem;
+    color: var(--muted);
+    margin: 0 0 32px;
+    max-width: 60ch;
+  }
+  .lede code, p code, li code {
+    font-family: var(--mono);
+    font-size: 0.85em;
+    color: var(--text);
+    background: #1c2333;
+    padding: 1px 6px;
+    border-radius: 4px;
+  }
+  .cta-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 56px;
+  }
+  .btn {
+    display: inline-block;
+    padding: 11px 20px;
+    border-radius: 9px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #06110c;
+  }
+  .btn-secondary {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--panel-border);
+  }
+  h2 {
+    font-size: 1.3rem;
+    margin: 0 0 8px;
+  }
+  section {
+    margin-bottom: 48px;
+  }
+  section p {
+    color: var(--muted);
+    margin: 0 0 14px;
+  }
+  .steps {
+    list-style: none;
+    margin: 20px 0 0;
+    padding: 0;
+    counter-reset: step;
+  }
+  .steps li {
+    counter-increment: step;
+    position: relative;
+    padding-left: 40px;
+    margin-bottom: 18px;
+    color: var(--muted);
+  }
+  .steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: #1c2333;
+    border: 1px solid var(--panel-border);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .strip-card {
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    border-radius: 14px;
+    padding: 22px 24px;
+  }
+  .strip {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 16px 0 10px;
+  }
+  .strip-tile {
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    background: #1c2333;
+    border: 1px solid var(--panel-border);
+    color: var(--muted);
+    font-family: var(--mono);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  }
+  .strip-tile.match {
+    background: color-mix(in srgb, var(--accent) 22%, #1c2333);
+    border-color: color-mix(in srgb, var(--accent) 55%, var(--panel-border));
+    color: var(--accent);
+  }
+  .strip-caption {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin: 0;
+  }
+  footer {
+    border-top: 1px solid var(--panel-border);
+    padding-top: 24px;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  footer a { color: var(--text); }
+</style>
+</head>
+<body>
+  <main>
+    <p class="eyebrow">BOGOCOIN</p>
+    <h1>Proof-of-work, secured by a shuffle that has to land back in order.</h1>
+    <p class="lede">
+      Mining succeeds when a hash-derived permutation of <code>N</code> numbers
+      comes back sorted — odds of <code>1/N!</code> per attempt — checked
+      alongside a normal hash-target comparison for fine-grained difficulty.
+      SHA3-256 and SHAKE256 do the actual work; the sort is just how the
+      result gets read.
+    </p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://github.com/keithagroves/bogocoin">View on GitHub</a>
+      <a class="btn btn-secondary" href="https://github.com/keithagroves/bogocoin/blob/main/plan.md">Read the plan</a>
+    </div>
+
+    <section>
+      <h2>How a mining attempt works</h2>
+      <ol class="steps">
+        <li>Hash the candidate block header with a nonce baked in:
+          <code>seed = SHA3-256("BOGOPOW-v1/seed" || header)</code>.</li>
+        <li>Stretch that seed into randomness with
+          <code>SHAKE256("BOGOPOW-v1/permutation" || seed)</code> and run
+          Fisher-Yates against it, using rejection sampling so no value is
+          more likely than any other.</li>
+        <li>Check two things: the permutation has to equal
+          <code>[0, 1, 2, ..., N-1]</code> exactly, and a second hash (the
+          ticket) has to fall under the current difficulty target.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Why there's no shortcut</h2>
+      <p>
+        A miner only controls the nonce. Change it and the seed changes
+        completely, so there's no way to work backward from "I want the
+        sorted permutation" to a nonce that produces it, short of breaking
+        SHA3-256 preimage resistance. Faster hardware gets you more attempts
+        per second, same as any hash-based proof-of-work. It doesn't get you
+        better odds per attempt.
+      </p>
+    </section>
+
+    <section class="strip-card">
+      <h2 style="margin-bottom:0">What a shuffle looks like</h2>
+      <div id="strip" class="strip"></div>
+      <p class="strip-caption">Illustrative only — a real attempt runs one hash per try, not a slot machine.</p>
+    </section>
+
+    <footer>
+      Phase 1 prototype: consensus core, CLI miner, and this page. No
+      networking, no wallet, no mainnet — see
+      <a href="https://github.com/keithagroves/bogocoin/blob/main/plan.md">plan.md</a>
+      for what's left, and
+      <a href="https://github.com/keithagroves/bogocoin/blob/main/README.md">README.md</a>
+      to run it yourself.
+    </footer>
+  </main>
+
+  <script>
+    const N = 8;
+    const strip = document.getElementById("strip");
+    const tiles = [];
+    for (let i = 0; i < N; i++) {
+      const t = document.createElement("div");
+      t.className = "strip-tile";
+      strip.appendChild(t);
+      tiles.push(t);
+    }
+    function shuffledOnce() {
+      const arr = [...Array(N).keys()];
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+    function tick() {
+      const arr = Math.random() < 0.15 ? [...Array(N).keys()] : shuffledOnce();
+      arr.forEach((value, index) => {
+        tiles[index].textContent = value;
+        tiles[index].classList.toggle("match", value === index);
+      });
+    }
+    tick();
+    setInterval(tick, 900);
+  </script>
+</body>
+</html>
